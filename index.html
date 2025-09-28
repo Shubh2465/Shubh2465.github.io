@@ -3,186 +3,325 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My Portfolio</title>
+  <title>Student Portfolio — Shubham Nalawade</title>
+
+  <!-- Handwritten-ish font for student feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Patrick+Hand&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --accent: #4f46e5;
-      --muted: #f4f6fb;
-      --card: #f9f9f9;
-      --round: 10px;
-      --maxw: 900px;
+    :root{
+      --accent: #0f172a;
+      --paper: #fffef7;
+      --note: #f7f3e9;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --card: #fff;
     }
-    * { box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; margin: 0; color: #222; background: white; }
-    header { background: var(--accent); color: #fff; padding: 1rem; text-align: center; position:sticky; top:0; z-index:10; }
-    .brand { display:flex; gap:12px; align-items:center; justify-content:center; }
-    .logo { width:44px; height:44px; border-radius:8px; background:linear-gradient(135deg,#7c3aed,#06b6d4); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; }
-    nav { margin-top:8px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
-    .nav-btn { background:transparent; color:white; border:1px solid rgba(255,255,255,0.15); padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600; }
-    .nav-btn.active { background:rgba(255,255,255,0.12); box-shadow:0 2px 6px rgba(0,0,0,0.08); }
-    main { padding:28px 16px; display:flex; justify-content:center; }
-    .container { width:100%; max-width:var(--maxw); }
-    .page { display:none; } /* hidden by default */
-    .page.active { display:block; }
-    h1,h2 { margin:0 0 12px 0; color:#111; }
-    .lead { color:#444; margin-bottom:18px; }
-    .card { background:var(--card); padding:14px; border-radius:var(--round); margin-bottom:12px; box-shadow:0 1px 2px rgba(0,0,0,0.03); }
-    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    ul { padding-left:20px; }
-    footer { text-align:center; padding:16px; background:#f3f4f6; margin-top:26px; }
-    /* responsive */
-    @media (max-width:700px) {
-      .grid-2 { grid-template-columns: 1fr; }
-      .brand { flex-direction:column; gap:6px; }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #f3f4f6 0%, #efece3 100%);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
+
+    header{
+      background:linear-gradient(90deg,#111827 0%, #0b1220 100%);
+      color:white;
+      padding:14px 18px;
+      position:sticky;
+      top:0;
+      z-index:20;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.15);
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo-note{
+      width:54px;
+      height:54px;
+      background:var(--note);
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:var(--ink);
+      box-shadow: 0 3px 8px rgba(2,6,23,0.25);
+      font-family:"Patrick Hand", cursive;
+    }
+    header h1{ font-size:18px; margin:0; font-weight:600; letter-spacing:0.2px; }
+    header p{ margin:0; font-size:12px; color:#cbd5e1; }
+
+    nav{ margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .nav-btn{
+      background:transparent;
+      border:1px dashed rgba(255,255,255,0.12);
+      color:#e6eefc;
+      padding:7px 10px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:13px;
+    }
+    .nav-btn.active{ background:#ffffff10; box-shadow: inset 0 -2px 0 rgba(255,255,255,0.02); }
+
+    main{ padding:22px 14px; display:flex; justify-content:center; }
+    .wrap{ width:100%; max-width:920px; }
+
+    .paper{
+      background:var(--paper);
+      border-radius:12px;
+      padding:20px;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.08);
+      border: 1px solid rgba(15,23,42,0.04);
+    }
+
+    .hero{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      margin-bottom:14px;
+    }
+    .avatar{
+      width:86px;height:86px;border-radius:10px;
+      background:linear-gradient(135deg,#fef3c7,#fee2e2);
+      display:flex;align-items:center;justify-content:center;font-family:"Patrick Hand",cursive;font-weight:700;
+      font-size:26px;color:var(--ink);box-shadow: 0 6px 16px rgba(2,6,23,0.08);
+    }
+    .intro h2{ margin:0 0 6px 0; font-size:20px; font-weight:700;}
+    .intro p{ margin:0; color:var(--muted); font-size:14px; }
+
+    .stamp{
+      display:inline-block;
+      padding:6px 8px;
+      border-radius:8px;
+      border:1px solid #ef4444;
+      color:#b91c1c;
+      font-size:12px;
+      font-weight:700;
+      margin-left:8px;
+      background:linear-gradient(180deg,#fff1f2,#fff8f8);
+    }
+
+    .section{ margin-top:18px; }
+    .section h3{ margin:0 0 10px 0; font-size:16px; }
+    .card{
+      background:var(--card);
+      border-radius:8px;
+      padding:12px;
+      margin-bottom:10px;
+      border-left:4px solid #f3f4f6;
+      box-shadow: 0 2px 6px rgba(15,23,42,0.04);
+    }
+    .small{ font-size:13px; color:var(--muted); }
+
+    .labs{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+    @media (max-width:700px){ .labs{ grid-template-columns:1fr; } .hero{flex-direction:column;align-items:flex-start} nav{margin-left:8px} }
+
+    footer{ text-align:center; padding:10px 6px; color:var(--muted); font-size:13px; margin-top:14px; }
+
+    .btn{
+      display:inline-block; padding:8px 10px; border-radius:8px; background:#0ea5a4; color:white; text-decoration:none; font-weight:600; font-size:13px;
+    }
+
+    .student-ribbon{
+      display:inline-block;
+      margin-top:12px;
+      padding:6px 10px;
+      background:linear-gradient(90deg,#fff3bf,#ffd7d7);
+      border-radius:8px;
+      border:1px solid rgba(0,0,0,0.04);
+      font-family:"Patrick Hand",cursive;
+      font-weight:700;
+      color:#1f2937;
+      font-size:14px;
+    }
+
+    .page{ display:none; }
+    .page.active{ display:block; animation:fadeIn .18s ease; }
+    @keyframes fadeIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="brand">
-      <div class="logo">SN</div>
-      <div>
-        <div style="font-weight:700; font-size:18px">Shubham</div>
-        <div style="font-size:12px; opacity:0.9">B.Tech • AI & Data Science</div>
-      </div>
+    <div class="logo-note">SN</div>
+    <div>
+      <h1>Shubham Nalawade</h1>
+      <p>IIIT Manipur — B.Tech Student • AI & Data Science</p>
     </div>
 
-    <nav aria-label="Main navigation" id="mainNav">
+    <nav id="nav" aria-label="Main navigation">
       <button class="nav-btn active" data-target="home">Home</button>
       <button class="nav-btn" data-target="education">Education</button>
-      <button class="nav-btn" data-target="hobbies">Hobbies & Projects</button>
+      <button class="nav-btn" data-target="projects">Hobbies & Projects</button>
+      <button class="nav-btn" data-target="contact">Contact</button>
     </nav>
   </header>
 
   <main>
-    <div class="container">
+    <div class="wrap">
+      <div class="paper">
 
-      <!-- Home page -->
-      <section id="home" class="page active" role="region" aria-labelledby="homeTitle">
-        <h1 id="homeTitle">Welcome 👋</h1>
-        <p class="lead">Hello! I'm <strong>Shubham Nalawade</strong>, a B.Tech student interested in AI, Data Science, and building cool projects. Use the navigation above to explore.</p>
+        <!-- HOME -->
+        <section id="home" class="page active">
+          <div class="hero">
+            <div class="avatar">SN</div>
+            <div class="intro">
+              <h2>Hi — I'm <span style="color:#0f172a">Shubham Nalawade</span> <span class="stamp">STUDENT</span></h2>
+              <p class="small">B.Tech in Computer Science & Engineering at IIIT Manipur (2024–2029). Focused on AI & Data Science. This is a simple student portfolio showing labs, projects and hobbies.</p>
 
-        <div class="card grid-2" style="align-items:center">
-          <div>
-            <h3>Quick Stats</h3>
-            <ul>
-              <li>GPA: 8.51</li>
-              <li>Projects: 3</li>
-              <li>Hackathons: 2</li>
-            </ul>
-          </div>
-          <div style="text-align:center;">
-            <div style="background:linear-gradient(135deg,#fde68a,#fbcfe8); padding:18px; border-radius:10px;">
-              <strong>Featured:</strong>
-              <div style="margin-top:8px; font-weight:600">Finshield Hackathon(Credit Risk model)</div>
-              <div style="font-size:13px; color:#333; margin-top:6px">AI model to predict risk of borrower</div>
+              <div style="margin-top:12px">
+                <span class="student-ribbon">Made by a student ✏️</span>
+                <span style="margin-left:10px" class="small">Last updated: <strong id="updated">2025</strong></span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Education page -->
-      <section id="education" class="page" role="region" aria-labelledby="educationTitle">
-        <h2 id="educationTitle">Education </h2>
-        <p class="lead">Overview of academic background — degrees, institutes, and key courses.</p>
-
-        <div class="card">
-          <h3>B.Tech - Computer Science & Engineering</h3>
-          <p>IIIT Manipur (2024 - 2029)</p>
-          <p>Focus: AI & Data Science. Relevant courses: ML, Data Structures, Algorithms. </p>
-        </div>
-
-        <div class="card">
-          <h3>Higher Secondary</h3>
-          <p>MAharashtra Vidyalaya (2021 - 2023)</p>
-          <p>Maths & Physics stream. </p>
-        </div>
-
-        <div class="card">
-          <h3>Certificates</h3>
-          <ul>
-            
-            <li>Hackathon Finale at IITH(Top 18 from 660 submissions) </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Hobbies & Projects page -->
-      <section id="hobbies" class="page" role="region" aria-labelledby="hobbiesTitle">
-        <h2 id="hobbiesTitle">Hobbies & Projects</h2>
-        <p class="lead">A short gallery of hobbies and a list of projects with descriptions.</p>
-
-        <div class="card">
-          <h3>Hobbies</h3>
-          <ul>
-            <li>Photography — landscape & portraits</li>
-	    <li>Updates on latest tech in the market</li>
-            <li>Hiking — local treks on weekends</li>
-            <li>Open-source contribution</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Projects</h3>
-          <div style="margin-top:8px;">
-            <strong>Credit risk AI model</strong>
-            <div style="font-size:13px; color:#444;">Gradient boost ai model to predict risk of borrower.</div>
+          <div class="section">
+            <h3>Quick note</h3>
+            <div class="card small">
+              I am a student working on coursework and hackathon projects. Contact me for collaboration — responses may take time since I'm balancing studies.
+            </div>
           </div>
-          <div style="margin-top:8px;">
-            <strong>Chatbot Demo</strong>
-            <div style="font-size:13px; color:#444;">Rule-based chatbot built using Node.js.</div>
-          </div>
-          <div style="margin-top:8px;">
-            <strong>Portfolio Website</strong>
-            <div style="font-size:13px; color:#444;">This website — hosted on GitHub Pages.</div>
-          </div>
-        </div>
-      </section>
 
+          <div class="section">
+            <h3>Featured lab</h3>
+            <div class="card">
+              <strong>Finshield — Credit Risk Model</strong><br>
+              AI model (gradient boosting) to predict borrower risk. Finished at Finshield Hackathon (finale). (Short description shown; code linked in my GitHub.)
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Quick stats</h3>
+            <div class="card">
+              <ul class="small" style="margin:0; padding-left:18px;">
+                <li>GPA: <strong>8.51</strong></li>
+                <li>Projects: <strong>3</strong></li>
+                <li>Hackathons: <strong>2</strong></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education" class="page" tabindex="-1">
+          <h3>Education 🎓</h3>
+
+          <div class="card">
+            <strong>B.Tech — Computer Science & Engineering</strong><br>
+            IIIT Manipur (2024 — 2029)<br>
+            <span class="small">Focus: AI & Data Science. Key courses: Machine Learning, Data Structures, Algorithms, Operating Systems.</span>
+          </div>
+
+          <div class="card">
+            <strong>Higher Secondary</strong><br>
+            Maharashtra Vidyalaya (2021 — 2023)<br>
+            <span class="small">Maths & Physics stream.</span>
+          </div>
+
+          <div class="card">
+            <strong>Certificates & Achievements</strong>
+            <ul class="small" style="margin:8px 0 0 18px;">
+              <li>Hackathon Finale at IITH — Top 18 from 660 submissions</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- PROJECTS / HOBBIES -->
+        <section id="projects" class="page" tabindex="-1">
+          <h3>Hobbies & Projects 🚀</h3>
+
+          <div class="card">
+            <strong>Hobbies</strong>
+            <ul class="small" style="margin:8px 0 0 18px;">
+              <li>Photography — landscape & portraits</li>
+              <li>Keeping updates on latest tech in the market</li>
+              <li>Hiking — local treks on weekends</li>
+              <li>Open-source contribution</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <strong>Projects / Lab Work</strong>
+
+            <div class="labs" style="margin-top:10px">
+              <div style="border-left:4px solid #e5e7eb; padding:8px; border-radius:6px; background:#fff">
+                <strong>Credit risk AI model</strong>
+                <div class="small">Gradient-boosting model to predict borrower risk (Finshield Hackathon project).</div>
+                <div style="margin-top:8px"><a class="btn" href="#" onclick="alert('Add GitHub link to this project')">Open code</a></div>
+              </div>
+
+              <div style="border-left:4px solid #e5e7eb; padding:8px; border-radius:6px; background:#fff">
+                <strong>Chatbot Demo</strong>
+                <div class="small">Rule-based chatbot built using Node.js for lab practice.</div>
+                <div style="margin-top:8px"><a class="btn" href="#" onclick="alert('Add GitHub link to this project')">Open code</a></div>
+              </div>
+
+              <div style="border-left:4px solid #e5e7eb; padding:8px; border-radius:6px; background:#fff; grid-column: 1 / -1;">
+                <strong>Portfolio Website</strong>
+                <div class="small">This portfolio — hosted on GitHub Pages.</div>
+                <div style="margin-top:8px"><a class="btn" href="#" onclick="alert('Link to repo or live site')">See live</a></div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="page" tabindex="-1">
+          <h3>Contact ✉️</h3>
+          <div class="card">
+            <p class="small">I check email occasionally — I'm a student so replies may take time.</p>
+            <p style="margin:6px 0"><strong>Email:</strong> <a href="mailto:your.email@iiitmanipur.ac.in">your.email@iiitmanipur.ac.in</a></p>
+            <p style="margin:6px 0"><strong>GitHub:</strong> <a href="https://github.com/your-username" target="_blank" rel="noopener">github.com/your-username</a></p>
+            <p style="margin:6px 0"><strong>Resume:</strong> <a href="#" onclick="alert('Upload your resume and update this link')">download (pdf)</a></p>
+          </div>
+
+          <div class="card small">
+            <strong>Note:</strong> This site is intentionally simple — built by a student. If you found anything wrong, please let me know.
+          </div>
+        </section>
+
+      </div>
+
+      <footer>
+        <div class="meta">© <span id="year"></span> Shubham Nalawade — Student portfolio (IIIT Manipur)</div>
+      </footer>
     </div>
   </main>
 
-  <footer>
-    © <span id="year"></span>Shubh — Built with  GitHub Pages
-  </footer>
-
   <script>
-    // update year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // navigation logic: show/hide pages and toggle active nav button
-    const nav = document.getElementById('mainNav');
+    const nav = document.getElementById('nav');
     const buttons = nav.querySelectorAll('.nav-btn');
     const pages = document.querySelectorAll('.page');
+    const now = new Date();
+    document.getElementById('year').textContent = now.getFullYear();
+    document.getElementById('updated').textContent = now.getFullYear();
 
-    function showSection(id) {
+    function show(id){
       pages.forEach(p => p.classList.toggle('active', p.id === id));
       buttons.forEach(b => b.classList.toggle('active', b.dataset.target === id));
-      // optional: update URL hash (so back button works)
       history.replaceState(null, '', '#' + id);
+      const el = document.getElementById(id);
+      if(el) el.focus();
     }
 
     nav.addEventListener('click', (e) => {
       const btn = e.target.closest('.nav-btn');
-      if (!btn) return;
-      const target = btn.dataset.target;
-      showSection(target);
-      // focus for accessibility
-      document.getElementById(target).focus();
+      if(!btn) return;
+      show(btn.dataset.target);
     });
 
-    // on load: if URL has hash, show that section
     const hash = location.hash.replace('#','');
-    if (hash && document.getElementById(hash)) {
-      showSection(hash);
-    } else {
-      showSection('home');
-    }
-
-    // make sections focusable when selected (accessibility)
-    pages.forEach(p => p.setAttribute('tabindex','-1'));
+    if(hash && document.getElementById(hash)) show(hash);
+    else show('home');
   </script>
 </body>
 </html>
+
 
