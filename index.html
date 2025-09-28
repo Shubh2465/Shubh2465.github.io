@@ -1,96 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>My Portfolio</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    header { background: #4f46e5; color: white; padding: 1rem; text-align: center; }
-    nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    section { padding: 40px 20px; }
-    h1, h2 { color: #333; }
-    .container { max-width: 900px; margin: auto; }
-    .card { background: #f9f9f9; padding: 15px; margin: 10px 0; border-radius: 8px; }
-    footer { background: #eee; text-align: center; padding: 15px; margin-top: 30px; }
+    :root {
+      --accent: #4f46e5;
+      --muted: #f4f6fb;
+      --card: #f9f9f9;
+      --round: 10px;
+      --maxw: 900px;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; color: #222; background: white; }
+    header { background: var(--accent); color: #fff; padding: 1rem; text-align: center; position:sticky; top:0; z-index:10; }
+    .brand { display:flex; gap:12px; align-items:center; justify-content:center; }
+    .logo { width:44px; height:44px; border-radius:8px; background:linear-gradient(135deg,#7c3aed,#06b6d4); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; }
+    nav { margin-top:8px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+    .nav-btn { background:transparent; color:white; border:1px solid rgba(255,255,255,0.15); padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600; }
+    .nav-btn.active { background:rgba(255,255,255,0.12); box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+    main { padding:28px 16px; display:flex; justify-content:center; }
+    .container { width:100%; max-width:var(--maxw); }
+    .page { display:none; } /* hidden by default */
+    .page.active { display:block; }
+    h1,h2 { margin:0 0 12px 0; color:#111; }
+    .lead { color:#444; margin-bottom:18px; }
+    .card { background:var(--card); padding:14px; border-radius:var(--round); margin-bottom:12px; box-shadow:0 1px 2px rgba(0,0,0,0.03); }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    ul { padding-left:20px; }
+    footer { text-align:center; padding:16px; background:#f3f4f6; margin-top:26px; }
+    /* responsive */
+    @media (max-width:700px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .brand { flex-direction:column; gap:6px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Header / Navigation -->
   <header>
-    <h1>My Portfolio</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#education">Education</a>
-      <a href="#hobbies">Hobbies & Projects</a>
+    <div class="brand">
+      <div class="logo">SN</div>
+      <div>
+        <div style="font-weight:700; font-size:18px">Shubham</div>
+        <div style="font-size:12px; opacity:0.9">B.Tech • AI & Data Science</div>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation" id="mainNav">
+      <button class="nav-btn active" data-target="home">Home</button>
+      <button class="nav-btn" data-target="education">Education</button>
+      <button class="nav-btn" data-target="hobbies">Hobbies & Projects</button>
     </nav>
   </header>
 
-  <!-- Landing Page -->
-  <section id="home">
+  <main>
     <div class="container">
-      <h2>Welcome 👋</h2>
-      <p>Hello! I'm <strong>Your Name</strong>, a B.Tech student interested in AI, Data Science, and building cool projects.  
-      This site shares my <em>education journey</em> and <em>hobbies & projects</em>.</p>
+
+      <!-- Home page -->
+      <section id="home" class="page active" role="region" aria-labelledby="homeTitle">
+        <h1 id="homeTitle">Welcome 👋</h1>
+        <p class="lead">Hello! I'm <strong>Shubham Nalawade</strong>, a B.Tech student interested in AI, Data Science, and building cool projects. Use the navigation above to explore.</p>
+
+        <div class="card grid-2" style="align-items:center">
+          <div>
+            <h3>Quick Stats</h3>
+            <ul>
+              <li>GPA: 8.51</li>
+              <li>Projects: 3</li>
+              <li>Hackathons: 2</li>
+            </ul>
+          </div>
+          <div style="text-align:center;">
+            <div style="background:linear-gradient(135deg,#fde68a,#fbcfe8); padding:18px; border-radius:10px;">
+              <strong>Featured:</strong>
+              <div style="margin-top:8px; font-weight:600">Finshield Hackathon(Credit Risk model)</div>
+              <div style="font-size:13px; color:#333; margin-top:6px">AI model to predict risk of borrower</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education page -->
+      <section id="education" class="page" role="region" aria-labelledby="educationTitle">
+        <h2 id="educationTitle">Education </h2>
+        <p class="lead">Overview of academic background — degrees, institutes, and key courses.</p>
+
+        <div class="card">
+          <h3>B.Tech - Computer Science & Engineering</h3>
+          <p>IIIT Manipur (2024 - 2029)</p>
+          <p>Focus: AI & Data Science. Relevant courses: ML, Data Structures, Algorithms. </p>
+        </div>
+
+        <div class="card">
+          <h3>Higher Secondary</h3>
+          <p>MAharashtra Vidyalaya (2021 - 2023)</p>
+          <p>Maths & Physics stream. </p>
+        </div>
+
+        <div class="card">
+          <h3>Certificates</h3>
+          <ul>
+            
+            <li>Hackathon Finale at IITH(Top 18 from 660 submissions) </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Hobbies & Projects page -->
+      <section id="hobbies" class="page" role="region" aria-labelledby="hobbiesTitle">
+        <h2 id="hobbiesTitle">Hobbies & Projects</h2>
+        <p class="lead">A short gallery of hobbies and a list of projects with descriptions.</p>
+
+        <div class="card">
+          <h3>Hobbies</h3>
+          <ul>
+            <li>Photography — landscape & portraits</li>
+	    <li>Updates on latest tech in the market</li>
+            <li>Hiking — local treks on weekends</li>
+            <li>Open-source contribution</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Projects</h3>
+          <div style="margin-top:8px;">
+            <strong>Credit risk AI model</strong>
+            <div style="font-size:13px; color:#444;">Gradient boost ai model to predict risk of borrower.</div>
+          </div>
+          <div style="margin-top:8px;">
+            <strong>Chatbot Demo</strong>
+            <div style="font-size:13px; color:#444;">Rule-based chatbot built using Node.js.</div>
+          </div>
+          <div style="margin-top:8px;">
+            <strong>Portfolio Website</strong>
+            <div style="font-size:13px; color:#444;">This website — hosted on GitHub Pages.</div>
+          </div>
+        </div>
+      </section>
+
     </div>
-  </section>
+  </main>
 
-  <!-- Education Page -->
-  <section id="education" style="background:#f0f4ff;">
-    <div class="container">
-      <h2>Education 🎓</h2>
-      <div class="card">
-        <h3>B.Tech - Computer Science & Engineering</h3>
-        <p>IIIT Manipur (2023 - Present)</p>
-        <p>Focus: AI & Data Science | Active in coding clubs & hackathons.</p>
-      </div>
-      <div class="card">
-        <h3>Higher Secondary</h3>
-        <p>ABC Junior College (2021 - 2023)</p>
-        <p>Maths & Physics stream | Top 5% of class.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Hobbies & Projects -->
-  <section id="hobbies">
-    <div class="container">
-      <h2>Hobbies & Projects 🚀</h2>
-      <h3>Hobbies</h3>
-      <ul>
-        <li>Photography — love capturing nature & people</li>
-        <li>Hiking — weekend treks for fresh air 🌄</li>
-        <li>Coding — exploring AI & Cybersecurity</li>
-      </ul>
-
-      <h3 style="margin-top:20px;">Projects</h3>
-      <div class="card">
-        <strong>Matrix Multiplier (C)</strong><br>
-        A simple CLI program to multiply matrices (college lab project).
-      </div>
-      <div class="card">
-        <strong>Chatbot Demo</strong><br>
-        Rule-based chatbot built using Node.js.
-      </div>
-      <div class="card">
-        <strong>Portfolio Website</strong><br>
-        This very website hosted on GitHub Pages! 🎉
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    © <span id="year"></span> Your Name — Built with ❤️ using GitHub Pages
+    © <span id="year"></span>Shubh — Built with  GitHub Pages
   </footer>
 
   <script>
-    // auto-update year
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    // update year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // navigation logic: show/hide pages and toggle active nav button
+    const nav = document.getElementById('mainNav');
+    const buttons = nav.querySelectorAll('.nav-btn');
+    const pages = document.querySelectorAll('.page');
+
+    function showSection(id) {
+      pages.forEach(p => p.classList.toggle('active', p.id === id));
+      buttons.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+      // optional: update URL hash (so back button works)
+      history.replaceState(null, '', '#' + id);
+    }
+
+    nav.addEventListener('click', (e) => {
+      const btn = e.target.closest('.nav-btn');
+      if (!btn) return;
+      const target = btn.dataset.target;
+      showSection(target);
+      // focus for accessibility
+      document.getElementById(target).focus();
+    });
+
+    // on load: if URL has hash, show that section
+    const hash = location.hash.replace('#','');
+    if (hash && document.getElementById(hash)) {
+      showSection(hash);
+    } else {
+      showSection('home');
+    }
+
+    // make sections focusable when selected (accessibility)
+    pages.forEach(p => p.setAttribute('tabindex','-1'));
+  </script>
 </body>
 </html>
 
